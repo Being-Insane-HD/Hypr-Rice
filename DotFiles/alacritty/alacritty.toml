@@ -1,0 +1,17 @@
+[general]
+live_config_reload = true
+
+[window]
+decorations_theme_variant = "dark"
+
+[font]
+normal = { family = "Roboto", style = "Regular" }
+bold = { family = "Roboto", style = "Bold" }
+italic = { family = "Roboto", style = "Italic" }
+bold_italic = { family = "Roboto", style = "Bold Italic" }
+size = 11.00
+
+[colors]
+[colors.primary]
+background = "#4D4764"
+foreground = "#EDCD9F"

@@ -1,0 +1,201 @@
+{
+    "layer": "bottom",
+    "position": "right",
+    "margin": "5 2 5 0",
+    "reload_style_on_change": true,
+    "spacing": 0,
+    "width": 52,
+
+    "modules-left": [
+        "custom/search",
+        "custom/browser",
+        "custom/file",
+        "custom/MediaPlayer",
+        "wlr/taskbar"
+    ],
+
+    "modules-center": [
+        "hyprland/workspaces",
+        "custom/power"
+    ],
+
+    "modules-right": [
+        "group/hardware",
+        "pulseaudio",
+        "tray",
+        "clock"
+    ],
+
+    "group/hardware": {
+        "orientation": "inherit",
+        "drawer": {
+            "transition-duration": 500,
+            "transition-left-to-right": false
+        },
+        "modules": [
+            "custom/hardware",
+            "memory",
+            "battery",
+            "network"
+        ]
+    },
+
+    "custom/search": {
+        "format": "",
+        "tooltip": true,
+        "tooltip-format": "Wofi",
+        "on-click": "rofi -show drun"
+    },
+
+    "custom/browser": {
+        "format": "",
+        "tooltip": true,
+        "tooltip-format": "Firefox",
+        "on-click": "firefox"
+    },
+
+    "custom/file": {
+        "format": "<span font='Font Awesome 6 Free'></span>",
+        "tooltip": true,
+        "tooltip-format": "File(Thunar)",
+        "on-click": "thunar"
+    },
+
+    "custom/MediaPlayer": {
+        "format": "",
+        "tooltip": true,
+        "tooltip-format": "Media Player",
+        "on-click": "vlc"
+    },
+
+    "custom/hardware": {
+        "format": "",
+        "tooltip": true,
+        "tooltip-format": "Hardware Info"
+    },
+
+    "hyprland/workspaces": {
+        // "all-outputs": true,
+        // "active-only": false,
+        "tooltip": true,
+        "tooltip-format": "workspace {title}",
+        // "on-click": "activate",
+        "persistent_workspaces":{ "*": 4 }
+    },
+
+    "tray": {
+        "spacing": 10,
+        "tooltip": true,
+        "tooltip-format": "{bandwidthDownBytes}"
+    },
+
+    "clock": {
+        "rotate": 270,
+        "format": "{:%I:%M %p}",
+        "tooltip": true,
+        "on-click": "tkremind",
+        //"tooltip-format": "{:%a, %d %b %Y}",
+        "tooltip-format": "<tt><small>{calendar}</small></tt>",
+        "calendar": {
+                    "mode"          : "month",
+                    "mode-mon-col"  : 3,
+                    "weeks-pos"     : "right",
+                    "on-scroll"     : 1,
+                    "format": {
+                              "months":     "<span color='#ffead3'><b>{}</b></span>",
+                              "days":       "<span color='#ecc6d9'><b>{}</b></span>",
+                              "weeks":      "<span color='#99ffdd'><b>W{}</b></span>",
+                              "weekdays":   "<span color='#ffcc66'><b>{}</b></span>",
+                              "today":      "<span color='#ff6699'><b><u>{}</u></b></span>"
+                              }
+                    },
+        "actions":  {
+                    "on-click-right": "mode",
+                    // "on-scroll-up": "tz_up",
+                    // "on-scroll-down": "tz_down",
+                    // "on-scroll-up": "shift_up",
+                    // "on-scroll-down": "shift_down",
+                    //"on-click": "merkuro-calendar"
+                    }
+    },
+
+    "cpu": {
+        "rotate": 270,
+        "format": " {usage}%",
+        "interval": 2,
+
+        "states": {
+            "critical": 90
+        }
+    },
+
+    "memory": {
+        "rotate": 270,
+        "format": " {percentage}%",
+        "interval": 2,
+
+        "states": {
+            "critical": 80
+        }
+    },
+
+    "battery": {
+        "rotate": 270,
+        "format": "<span font='Font Awesome 6 Free 11'>{icon}</span> {capacity}%",
+        "format-icons": ["", "", "", "", ""],
+        "interval": 5,
+        "states": {
+            "good": 95,
+            "warning": 20,
+            "critical": 10
+        },
+        "format-charging": "<span font='Font Awesome 6 Free'></span> <span font='Font Awesome 5 Free 11'>{icon}</span> {capacity}%",
+        "format-full": "<span font='Font Awesome 6 Free'></span> <span font='Font Awesome 5 Free 11'>{icon}</span> F",
+        "tooltip-format": "{timeTo} {capacity} % | {power} W",
+        // "on-click": "control --battery"
+    },
+
+    "custom/power": {
+        "format": "",
+        "tooltip": true,
+        "tooltip-format": "Power Options",
+        "on-click": "wlogout"
+    },
+
+    "network": {
+        "rotate": 270,
+        "format-wifi" : "",
+        "format-ethernet": "",
+        "format-disconnected" : "",
+        "interval": 5,
+        "tooltip": true,
+        "tooltip-format": "{bandwidthDownBytes}",
+        // "on-click": "control --wifi"
+    },
+
+    "pulseaudio": {
+        "rotate": 270,
+        "scroll-step": 5,
+        "max-volume": 150,
+        "format": " <span font='Font Awesome 6 Free'>{icon}</span> {volume} ",
+        "format-bluetooth": " <span font='Font Awesome 6 Free'>{icon}</span> {volume} ",
+        "format-icons": [""],
+        "nospacing": 1,
+        "on-click": "pavucontrol",
+        "tooltip": true,
+        "tooltip-format": "Vol: {volume}"
+    },
+
+    "wlr/taskbar": {
+        "format": "{icon}",
+        "icon-size": 20,
+        "icon-theme": "tela-circle-icon-theme-all",
+        "tooltip-format": "{title}",
+        "on-click": "activate",
+        "ignore-list": ["", "kittyfloat", "Thunar"],
+        "apps_ids-mapping": {
+            "firefoxdeveloperedition": "Firefox"
+        }
+    }
+    //"on-click": "control --display"
+}

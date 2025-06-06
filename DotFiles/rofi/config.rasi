@@ -1,0 +1,155 @@
+* {
+	base00: #263238;
+	base01: #2E3C43;
+	base02: #314549;
+	base03: #546E7A;
+	base04: #B2CCD6;
+	base05: #EEFFFF;
+	base06: #EEFFFF;
+	base07: #FFFFFF;
+	base08: #F07178;
+	base09: #F78C6C;
+	base0A: #FFCB6B;
+	base0B: #C3E88D;
+	base0C: #89DDFF;
+	base0D: #82AAFF;
+	base0E: #C792EA;
+	base0F: #FF5370;
+
+	/*base0D: #00BCD4;*/
+
+	spacing: 0;
+	background-color: transparent;
+
+}
+
+window {
+	transparency: "real";
+    width:  700px;
+	background-color: #263238CC; /*base00 + CC (80% opacity)*/
+    background-image: url("HyprWall1.jpg", width);
+    border-radius: 50px 10px 10px 50px;
+}
+
+mainbox {
+	children: [inputbar, message, mode-switcher, listview];
+	spacing: 30px;
+	padding: 30px 0;
+	border: 1px;
+	border-color: @base0D;
+    border-radius: 50px 10px 10px 50px;
+}
+
+inputbar {
+    margin: 0px 20px 0px 30px;
+	padding: 5px 30px;
+    border: 2px solid;
+    border-color: blue;
+    border-radius: 20px;
+    background-color: @base0C;
+	children: [prompt, textbox-prompt-colon, entry, case-indicator];
+}
+
+prompt {
+	text-color: @base00;
+}
+
+textbox-prompt-colon {
+	expand: false;
+	str: ":";
+	margin: 0 1ch 0 0;
+	text-color: @base00;
+}
+
+entry {
+	text-color: @base00;
+}
+
+case-indicator {
+	text-color: @base00;
+}
+
+mode-switcher, message {
+	border: none;
+}
+
+button {
+	background-color: @base00;
+	text-color: @base0E;
+    margin: 0px 20px 0px 20px;
+	padding: 5px;
+    border-radius: 20px;
+}
+
+textbox {
+	background-color: @base00;
+	text-color: @base00;
+}
+
+button selected {
+    text-color: rgb(105, 50, 5);
+	background-color: rgb(131, 255, 234);
+}
+
+listview {
+	scrollbar: true;
+	margin: 0 10px 0 30px;
+}
+
+scrollbar {
+	background-color: @base03;
+	handle-color: @base0D;
+	handle-width: 10px;
+	border: 0 1px;
+	border-color: @base0D;
+    border-radius: 15px;
+	margin: 0 0 0 20px;
+}
+
+element {
+	padding: 10px;
+    spacing: 10px;
+	highlight: bold underline;
+    border-radius: 15px;
+	children: [element-icon, element-text];
+}
+element-text, element-icon {
+	background-color : inherit;
+	text-color	     : inherit;
+	foreground-color : inherit;
+}
+
+element normal {
+	background-color: rgb(96, 192, 219);
+}
+
+element selected {
+	background-color:rgb(44, 32, 97);
+    text-color: rgb(255,255,255);
+}
+
+element alternate {
+	/*background-color: @base03;*/
+}
+
+element normal normal, element alternate normal {
+    text-color: @base00;
+}
+
+element normal urgent, element selected urgent, element alternate urgent {
+	text-color: @base0F;
+}
+
+element normal active, element selected active, element alternate active {
+	text-color: @base0B;
+}
+
+element normal normal, element alternate normal {
+    background-color: rgb(96, 192, 219);
+}
+
+element selected normal {
+    background-color:rgb(44, 32, 97);
+    text-color: rgb(255,255,255);
+}
+
