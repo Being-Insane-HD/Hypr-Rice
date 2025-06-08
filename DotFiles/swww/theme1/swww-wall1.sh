@@ -1,13 +1,15 @@
+#!/bin/bash
+
 # Directory containing wallpapers
-WALLPAPER_DIR="$HOME/Drive_Turbo/Wallpaper/desktop"
+WALLPAPER_DIR1="$HOME/Drive_Turbo/Wallpaper/desktop/theme1"
 HISTORY_FILE="$HOME/Drive_Turbo/Wallpaper/.last_wallpaper"
 
 # Get the list of wallpapers sorted alphabetically
-WALLPAPERS=($(find "$WALLPAPER_DIR" -type f | sort))
+WALLPAPERS=($(find "$WALLPAPER_DIR1" -type f | sort))
 
 # Check if wallpapers exist
 if [[ ${#WALLPAPERS[@]} -eq 0 ]]; then
-    echo "No wallpapers found in $WALLPAPER_DIR"
+    echo "No wallpapers found in $WALLPAPER_DIR1"
     exit 1
 fi
 

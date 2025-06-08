@@ -1,0 +1,79 @@
+ARCH HYPRLAND SWWW THEME SWITCHER
+
+THEME SWITCHER BASED ON KEYBINDS AND SHELL SCRIPT
+
+=> MAKE SURE TO ADD KEYBINDS LIKE THIS IN HYPRLAND KEYBIND CONFIG(BY DEFAULT .config/hypr/hyprland.conf)
+    `bind = < YOUR OWN KEYBIND >, exec, ~/.config/swww/switch-theme.sh 
+     bind = < YOUR OWN KEYBIND >, exec, ~/.config/swww/theme-next.sh && ~/.config/swww/switch-theme.sh`
+
+=> TO ADD A NEW WALLPAPER, JUST ADD WALLPAPER IN WHICHEVER WALLPAPER DIRECTORY YOU WANT TO PUT. TO CHECK THE WALLPAPER DIRECTORY CHECK EITHER OF THE swww-wall SCRIPTS IN THE SUBFOLDERS theme1 OR theme2.
+
+=> TO ADD A NEW THEME, FOLLOW THE INSTRUCTIONS:
+
+1. CREATE A SEPARATE FOLDER IN THE WALLPAPER DIRECTORY ALONGSIDE THE OTHER WALLPAPER FOLDERS TO GROUP IN THE WALLPAPERS YOU WANT  SPECIFICALLY FOR THE NEW THEME
+    (SAY, IF THE NEW THEME IS THEME 3, MAKE A FOLDER CALLED theme3 INSIDE THE WALLPAPER DIRECTORY)
+
+2. COPY PASTE ONE OF THE SUBFOLDERS theme1 OR theme2 AND RENAME IT TO theme3 AND INSIDE THE FOLDER RENAME THE SCRIPT TO swww-wall3.sh
+
+3. CHANGE THIS PART OF THE SYNTAX IN theme-next.sh:
+
+        `if [ "$LAST_THEME" == "theme1" ]; then
+            echo "theme2" > "$STATE_FILE"
+        else
+            echo "theme1" > "$STATE_FILE"
+        fi`
+
+    TO THIS SYNTAX:
+
+        `if [ "$LAST_THEME" == "theme1" ]; then
+            echo "theme2" > "$STATE_FILE"
+        elif [ "$LAST_THEME" == "theme2" ]; then
+            echo "theme3" > "$STATE_FILE"
+        else
+            echo "theme1" > "$STATE_FILE"
+        fi`
+
+    THIS WILL ROTATE BETWEEN THEMES IN A NEXT-THEME ORDER. FOR ANY MORE SUBSEQUENT THEMES ADDED, JUST KEEP COPY-PASTING elif BLOCK BEFORE else BLOCK AND CHANGING THE LAST THEME AND ECHO STATEMENT ACCORDINGLY. NOW SAVE THE FILE
+
+4. OPEN switch-theme SCRIPT AND ADD THE DIRECTORY OF THE NEW THEME SCRIPT AS:
+
+        `THEME3_SCRIPT="$HOME/.config/swww/theme3/swww-wall3.sh"`
+
+    SAME FOR SUBSEQUENT THEMES
+
+5. CHANGE THE SYNTAX OF THIS PART:
+
+        `if [ "$LAST_THEME" == "theme1" ]; then
+            exec "$THEME1_SCRIPT"
+        else
+            exec "$THEME2_SCRIPT"
+        fi`
+
+    TO THIS PART:
+
+        `if [ "$LAST_THEME" == "theme1" ]; then
+            exec "$THEME1_SCRIPT"
+        elif [ "$LAST_THEME" == "theme2" ]; then
+            exec "$THEME2_SCRIPT"
+        else
+            exec "$THEME3_SCRIPT"
+        fi`
+
+    FOR ANY MORE SUBSEQUENT THEMES ADDED, JUST KEEP COPY-PASTING elif BLOCK BEFORE else BLOCK AND CHANGING THE LAST THEME AND EXEC STATEMENT ACCORDINGLY.NOW SAVE THE FILE.
+
+6. OPEN THE NEWLY CREATED/RENAMED swww-wall3.sh SCRIPT AND REPLACE THE FOLLOWING ACCORDINGLY:
+    CHANGE:
+        `WALLPAPER_DIR1="$HOME/< PATH TO WALLPAPER FOLDER >/theme1"`
+    TO:
+        `WALLPAPER_DIR3="$HOME/< PATH TO WALLPAPER FOLDER >/theme3"`
+
+    CHANGE:
+        `WALLPAPERS=($(find "$WALLPAPER_DIR1" -type f | sort))`
+    TO:
+        `WALLPAPERS=($(find "$WALLPAPER_DIR3" -type f | sort))`
+
+    CHANGE:
+        `echo "No wallpapers found in $WALLPAPER_DIR1"`
+    TO:
+        `echo "No wallpapers found in $WALLPAPER_DIR3"`
+    FOR ANY MORE SUBSEQUENT THEMES ADDED, KEEP CHANGING THE NUMBERS BASED ON THEME NUMBERS. NOW SAVE THE FILE.
